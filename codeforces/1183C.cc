@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define debug(a) cerr << #a << " = " << (a) << endl;
+#define get(t, i) get<(i)>((t))
+#define fst first
+#define snd second
+#define all(X) begin(X), end(X)
+
+template<typename T> ostream& operator<<(ostream& o, const vector<T>& v) {
+  o << '['; int b = 0; for (const auto& a : v) o << (b++ ? ", " : "") << a; o << ']'; return o;
+}
+
+template<typename T, typename U> ostream& operator<<(ostream& o, const pair<T, U>& p) {
+  o << '(' << p.fst << ", " << p.snd << ')'; return o;
+}
+
+template<typename T> ostream& operator<<(ostream& o, const set<T>& s) {
+  o << '{'; int b = 0; for (auto& e : s) o << (b++ ? ", " : "") << e; o << '}'; return o;
+}
+
+template<typename T, typename U> ostream& operator<<(ostream& o, const map<T, U>& m) {
+  o << '{'; int b = 0; for (auto& e : m) o << (b++ ? ", " : "") << e; o << '}'; return o;
+}
+
+typedef long long ll;
+ll q, n, k, a, b;
+
+bool f(ll x) {
+  ll y = n - x;
+  return k > x*a + y*b;
+}
+
+int main() {
+  ios::sync_with_stdio(0); cin.tie(0);
+  cin >> q;
+  while (q--) {
+    cin >> k >> n >> a >> b;
+
+    ll l = 0, r = n;
+    while (r - l > 1) {
+      ll m = (l+r)/2;
+      if (f(m)) l = m;
+      else r = m;
+    }
+
+    while (f(l) and l <= n) l++;
+    cout << l-1 << endl;
+  }
+}
+

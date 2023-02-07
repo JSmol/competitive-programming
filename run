@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# for interactive problems...
+# echo running...
+# g++ median.cc -g -Og -std=c++17 -Wall -Wextra -Wconversion -Wfatal-errors -fsanitize=address,undefined -o sol || exit
+# python3 test.py
+# exit
+
+echo running... $1
+g++ $1 -g -Og -std=c++17 -Wall -Wextra -Wconversion -Wfatal-errors -fsanitize=address,undefined -o sol || exit
+
+dir=$(dirname $1)
+for i in $dir/*.in; do
+  echo test $i
+  ./sol < $i
+done
+
+# for live in person contests:
+# 1. copy essential .vimrc configuations
+# 2. this file belongs in ~
+# 3. create template.cc in ~
+# 4. create contest directory
+# 5. cd in and write:
+#    for d in {A..K}; do mkdir $d && cp ~/template.cc $d/d.cc; done

@@ -1,0 +1,1 @@
+print(f'{input().replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "").replace("0", "")}{2 + max([y + i for i, y in enumerate(sorted([int(x) for x in input().strip().split()], reverse=True))])}')
